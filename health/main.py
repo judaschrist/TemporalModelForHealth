@@ -11,6 +11,7 @@ codes = [[dia.name for dia in pdict[key]] for key in pdict]
 # print(codes[0][1].decode('utf-8'))
 
 from gensim import corpora
+
 codedict = corpora.Dictionary(codes)
 
 corpus = [codedict.doc2bow(codesperson) for codesperson in codes]
