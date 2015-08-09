@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Test.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/health/data/diagnosis.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/health/main.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/whySoSlow.py" charset="UTF-8" />
+  </component>
+</project>
