@@ -8,7 +8,7 @@ def read_diagnosis_from_file(filepath):
     f = open(filepath, 'r')
     count = 0
     for line in f:
-        if count % 1000 == 0:
+        if count % 100000 == 0:
             print(str(count) + ' lines read...')
         if count > 5000000:
             break
