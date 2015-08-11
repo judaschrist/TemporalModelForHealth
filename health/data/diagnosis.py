@@ -10,7 +10,7 @@ def read_diagnosis_from_file(filepath):
     for line in f:
         if count % 100000 == 0:
             print(str(count) + ' lines read...')
-        if count > 1000000:
+        if count > 500000:
             break
         # line = f.readline()
         # print line.decode('utf-8')
