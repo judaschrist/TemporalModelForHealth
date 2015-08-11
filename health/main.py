@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from health.models import testlda
+from health.models import testlda, testhlda
 
 __author__ = 'Lingxiao'
 
@@ -16,6 +16,6 @@ if __name__ == '__main__':
     corpus = [codedict.doc2bow(codesperson) for codesperson in codes]
     id2token = dict((v, k) for k, v in codedict.token2id.iteritems())
 
-    testlda(corpus, id2token)
-
+    # testlda(corpus, id2token)
+    testhlda(corpus, id2token)
 

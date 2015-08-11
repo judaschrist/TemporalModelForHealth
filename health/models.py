@@ -22,5 +22,10 @@ def testlda(corpus, id2token):
         for wordturple in wordlist:
             print('\t' + wordturple[1] + '\t' + str(wordturple[0]))
 
-def testhlda(corpus, codedict):
+
+def testhlda(corpus, id2token):
+    from gensim.models.hdpmodel import HdpModel
+    hdp = HdpModel(corpus, id2token)
+    # print hdp.show_topics(-1, 5, formatted=False)
+    print(hdp.date)
     pass
