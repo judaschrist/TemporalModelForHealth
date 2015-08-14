@@ -21,7 +21,7 @@ font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
 # plt.show()
 
 
-def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(10, 5), nrowchart=1):
+def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(8, 6), nrowchart=2):
     f = open(path + modelname + '\\lda-seq\\info.dat', 'r')
     info = [int(line.split()[1]) for line in f]
     numtopic = info[0]
@@ -32,8 +32,8 @@ def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(10, 5), nrowchart=
     # fig = plt.gcf()
     # plt.figure(figsize=(20, 5))
     plt.figure(figsize=(nrowchart*chartsize[0], ((numtopic+nrowchart-1)/nrowchart)*chartsize[1]))
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None,
-                wspace=1, hspace=1)
+    plt.subplots_adjust(left=0.05, bottom=0.05, right=0.85, top=0.95,
+                wspace=0.7, hspace=0.2)
     #read dict
     f = codecs.open(path + modelname + '-dict.dat', 'r', 'utf-8')
     termdict = [line.split()[1] for line in f]
