@@ -8,7 +8,7 @@ import math
 import codecs
 from matplotlib.font_manager import FontProperties
 
-font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
+font = FontProperties(fname=r"c:\windows\fonts\simhei.ttf", size=14)
 
 # matplotlib.rc('font', )
 # # evenly sampled time at 200ms intervals
@@ -21,19 +21,20 @@ font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
 # plt.show()
 
 
-def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(8, 6), nrowchart=2):
+def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(14, 6), nrowchart=2, agestart=40, agestep=5):
     f = open(path + modelname + '\\lda-seq\\info.dat', 'r')
     info = [int(line.split()[1]) for line in f]
     numtopic = info[0]
     numterm = info[1]
     numslices = info[2]
+    agelist = [str(i)+'-'+str(i+agestep) for i in range(agestart, agestart+agestep*numslices, agestep)]
 
     # set chart sizes
     # fig = plt.gcf()
     # plt.figure(figsize=(20, 5))
     plt.figure(figsize=(nrowchart*chartsize[0], ((numtopic+nrowchart-1)/nrowchart)*chartsize[1]))
     plt.subplots_adjust(left=0.05, bottom=0.05, right=0.85, top=0.95,
-                wspace=0.7, hspace=0.2)
+                wspace=0.5, hspace=0.2)
     #read dict
     f = codecs.open(path + modelname + '-dict.dat', 'r', 'utf-8')
     termdict = [line.split()[1] for line in f]
@@ -55,9 +56,18 @@ def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(8, 6), nrowchart=2
         # print topicinplotlist
         plt.subplot((numtopic+nrowchart-1)/nrowchart, nrowchart, ntopic+1)
         plt.title(chartlist[0][0], fontproperties=font)
+        plt.xlabel('Age')
+        plt.ylabel('Prob ratio')
         for word, wordproblist in chartlist:
             plt.plot(wordproblist,  label=word)
+        plt.xticks(range(len(wordproblist)), agelist, size='small')
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop=font)
 
     # fig.savefig(modelname, dpi=100)
-    plt.show()
+    # plt.show()
+    from matplotlib.backends.backend_pdf import PdfPages
+    pp = PdfPages(path + modelname + '-plot.pdf')
+    plt.savefig(pp, format='pdf')
+    pp.close()
+
+
