@@ -30,8 +30,8 @@ def read_dia_sliced_by_age(filepath, sliceage=5, startage=40, endage=99):
     for line in f:
         if count % 100000 == 0:
             print(str(count) + ' lines read...')
-        if count > 1000000:
-            break
+        # if count > 1000000:
+        #     break
         count += 1
         items = line.split(',')
         pid = items[0]
@@ -45,7 +45,7 @@ def read_dia_sliced_by_age(filepath, sliceage=5, startage=40, endage=99):
             continue
         if age > endage:
             age = endage
-        numslice = (age-startage)/5
+        numslice = (age-startage)/sliceage
         doc = docslices[numslice].get(pid, [])
         doc.append(dname)
         docslices[numslice][pid] = doc

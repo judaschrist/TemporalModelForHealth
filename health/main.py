@@ -4,12 +4,14 @@ from health.models import testlda, testhlda
 __author__ = 'Lingxiao'
 
 if __name__ == '__main__':
-    from data.diagnosis import read_dia_sliced_by_age
-    docslices = read_dia_sliced_by_age('C:\\Users\\Lingxiao\\Desktop\\diagnoserecord.csv')
-    from models import print_time_slice_doc_data
-    print_time_slice_doc_data(docslices, 'C:\\cygwin64\\home\\Lingxiao\\dtm_release\\dtm\\example\\', name='dia')
+    # from data.diagnosis import read_dia_sliced_by_age
+    # docslices = read_dia_sliced_by_age('C:\\Users\\Lingxiao\\Desktop\\diagnoserecord.csv')
+    # from models import print_time_slice_doc_data
+    # print_time_slice_doc_data(docslices, 'C:\\cygwin64\\home\\Lingxiao\\dtm_release\\dtm\\example\\', name='dia')
     # from models import print_dtm_results
     # print_dtm_results('dia', 'C:\\cygwin64\\home\\Lingxiao\\dtm_release\\dtm\\example\\')
+    from plot.dtmplot import print_dtm_plot
+    print_dtm_plot('dia', 'C:\\cygwin64\\home\\Lingxiao\\dtm_release\\dtm\\example\\')
 
 
 
