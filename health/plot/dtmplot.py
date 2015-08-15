@@ -46,20 +46,22 @@ def print_dtm_plot(modelname, path, ntopicword=10, chartsize=(14, 6), nrowchart=
         wordmaxlist = {}
         for nterm in range(0, numterm):
             wordtimelist = []
-            word = termdict[nterm]
             for nslice in range(0, numslices):
                 wordtimelist.append(problist[numslices*nterm + nslice])
-            wordmaxlist[word] = max(wordtimelist)
-            topicwordproblist[word] = wordtimelist
-        chartlist = [(word, topicwordproblist[word]) for word in
+            wordmaxlist[nterm] = max(wordtimelist)
+            topicwordproblist[nterm] = wordtimelist
+        chartlist = [(nterm, topicwordproblist[nterm]) for nterm in
                      sorted(wordmaxlist, key=wordmaxlist.get, reverse=True)[:ntopicword]]
         # print topicinplotlist
         plt.subplot((numtopic+nrowchart-1)/nrowchart, nrowchart, ntopic+1)
-        plt.title(chartlist[0][0], fontproperties=font)
+        plt.title(termdict[chartlist[0][0]] +
+                  ', ' + termdict[chartlist[1][0]] +
+                  ', ' + termdict[chartlist[2][0]],
+                  fontproperties=font)
         plt.xlabel('Age')
         plt.ylabel('Prob ratio')
-        for word, wordproblist in chartlist:
-            plt.plot(wordproblist,  label=word)
+        for nterm, wordproblist in chartlist:
+            plt.plot(wordproblist,  label=termdict[nterm])
         plt.xticks(range(len(wordproblist)), agelist, size='small')
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop=font)
 
